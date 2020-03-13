@@ -44,14 +44,40 @@ def WorkInNetpeak():
         try:
             WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//input[@id='inputLastname']")))
         finally:
-            name=browser.find_element_by_xpath("//input[@id='inputLastname']")
-            name.send_keys(''.join(random.choice(string.ascii_letters) for i in range(10)))
+            inputLastname=browser.find_element_by_xpath("//input[@id='inputLastname']")
+            inputLastname.send_keys(''.join(random.choice(string.ascii_letters) for i in range(10)))
         try:
             WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//input[@id='inputEmail']")))
         finally:
-            name=browser.find_element_by_xpath("//input[@id='inputEmail']")
-            name.send_keys(''.join(random.choice(string.ascii_letters) for i in range(10))+'@'+''.join(random.choice(string.ascii_letters) for i in range(5))+'.com')
-            browser.find_element_by_xpath("//button[@id='submit']").click()
+            inputEmail=browser.find_element_by_xpath("//input[@id='inputEmail']")
+            inputEmail.send_keys(''.join(random.choice(string.ascii_letters) for i in range(10))+'@'+''.join(random.choice(string.ascii_letters) for i in range(5))+'.com')
+        try:
+            WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//input[@id='inputLastname']")))
+        finally:
+            browser.find_element_by_xpath("//select[@name='bd']").click()#день рождения
+            try:
+              WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//select[@name='bd']//option[contains(text(),'19')]")))  
+            finally:
+                browser.find_element_by_xpath("//select[@name='bd']//option[contains(text(),'19')]").click()
+
+            browser.find_element_by_xpath("//select[@name='bm']").click()#месяц рождения
+            try:
+              WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//select[@name='bm']//option[2]")))  
+            finally:
+                browser.find_element_by_xpath("//select[@name='bm']//option[2]").click()
+
+            browser.find_element_by_xpath("//select[@name='by']").click()#год рождения
+            try:
+              WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//option[contains(text(),'1999')]")))  
+            finally:
+                browser.find_element_by_xpath("//option[contains(text(),'1999')]").click()
+
+            try:#номер телефона
+                WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//input[@id='inputPhone']")))
+            finally:
+                inputLastname=browser.find_element_by_xpath("//input[@id='inputPhone']")
+                inputLastname.send_keys(''.join(random.choice(string.digits) for i in range(10)))
+        browser.find_element_by_xpath("//button[@id='submit']").click()
 
 
 
