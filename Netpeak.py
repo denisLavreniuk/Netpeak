@@ -15,3 +15,20 @@ import time
 browser = webdriver.Chrome()
 browser.get('https://netpeak.ua/')
 browser.wait = WebDriverWait(browser, 5)
+
+
+def WorkInNetpeak():
+    try:
+        WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "*//li[@class='blog']//a")))
+    finally:
+        browser.find_element_by_xpath("//li[@class='blog']//a").click()
+
+
+def main():
+    WorkInNetpeak()
+    
+
+
+
+if __name__ == '__main__':
+    main()
