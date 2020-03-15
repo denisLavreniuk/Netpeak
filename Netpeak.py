@@ -31,7 +31,7 @@ def WorkInNetpeak():
         WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, "//button[@id='upload']")))
     finally:
         sendFile=browser.find_element_by_xpath("//input[@name='up_file']")
-        sendFile.send_keys("C:\\git\\Netpeak\\Netpeak\\Netpeak.png")
+        sendFile.send_keys("C:\\git\\Netpeak\\Netpeak\\Netpeak.png")    
     try:
         browser.find_element_by_xpath("//div[@id='up_file_name']//label[@class='control-label'][contains(text(),'(')]")
     finally:
@@ -78,20 +78,14 @@ def WorkInNetpeak():
                 inputLastname=browser.find_element_by_xpath("//input[@id='inputPhone']")
                 inputLastname.send_keys(''.join(random.choice(string.digits) for i in range(10)))
         browser.find_element_by_xpath("//button[@id='submit']").click()
-
-
-
-
-
-
-        
-
+        browser.find_element_by_xpath("//div[@class='logo-block']//a//img").click()
+        if browser.current_url=="https://netpeak.ua/":
+            print("=====================================================================")
+            print("all correct")
+            print("=====================================================================")
 
 def main():
     WorkInNetpeak()
-    
-
-
 
 if __name__ == '__main__':
     main()
